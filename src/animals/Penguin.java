@@ -47,19 +47,39 @@ public class Penguin extends Animal
         leftFoot.moveForward();
         rightFoot.moveForward();
     }
+    public boolean isDead ()
+    {
+        if ( weight == 0 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
+    }
     public void swim()
     {
-        System.out.println( "\t" + name + " is swimming." );
 
-        rightFoot.flap();
-        leftFoot.flap();
+        if ( weight > 50 )
+        {
+            System.out.println( "\t" + name + " is swimming.  " + weight );
+            weight -= 50;
+            rightFoot.flap();
+            leftFoot.flap();
+        }
+        else
+        {
+            System.out.println( "\t" + name + " can not swim - weighs " + weight );
+        }
+
     }
 
     public void eat( Fish fish )
     {
         System.out.println( "\t" + name + " is eating fish " + fish.name );
-        weight += fish.weight;
+        weight += 0.75 * fish.weight;
         isHungry = false;
     }
 

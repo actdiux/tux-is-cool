@@ -1,6 +1,7 @@
 import animals.Fish;
 import animals.Penguin;
 
+
 /**
  * Author: Corey Leigh Latislaw
  * Date: 7/29/12
@@ -8,9 +9,10 @@ import animals.Penguin;
  */
 public class Zoo
 {
-    static final int NUMBER_OF_PENGUINS = 2;
+    static final int NUMBER_OF_PENGUINS = 3;
 
     Penguin[] penguins;
+
 
     public Zoo()
     {
@@ -31,12 +33,21 @@ public class Zoo
                                    "black", "black", // Eyes
                                    24.0f, 24.0f,     // Feet
                                    10.0f );          // Beak
+
+
+        System.out.println( "\nCreating a penguin!" );
+        penguins[2] = new Penguin( "Tuxwo",         // Name
+                4, 40,          // Age & weight
+                "black", "blue", // Eyes
+                20.0f, 20.0f,     // Feet
+                5.0f );          // Beak
     }
 
     public static void main( String[] argv )
     {
         System.out.println( "Hello, I have a zoo!" );
         Zoo zoo = new Zoo();
+        Pond pond = new Pond();
 
         Penguin[] penguins = zoo.getPenguins();
         System.out.println();
@@ -50,11 +61,18 @@ public class Zoo
         System.out.println( "Penguin actions:" );
         for ( Penguin penguin : penguins )
         {
+            if ( ! penguin.isDead() )
+            {
             penguin.waddle();
             penguin.swim();
             penguin.eat( new Fish( "Nemo", 0, 25 ) );
             System.out.println( "\t" + penguin.toString() );
             System.out.println();
+            }
+            else
+            {
+                System.out.println( "\t is dead " + penguin.toString() );
+            }
         }
     }
 
